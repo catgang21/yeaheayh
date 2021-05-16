@@ -1,0 +1,23 @@
+script.Parent.Parent.Parent.Parent.Parent.Hint.Visible = false;
+
+while wait() do
+	local args = {
+		[1] = "PickingTools",
+		[2] = "SWATShield"
+	}
+
+	game:GetService("ReplicatedStorage").RemoteEvents.Tools:InvokeServer(unpack(args))
+
+	local args = {
+		[1] = "PickingTools",
+		[2] = "Taser"
+	}
+
+	game:GetService("ReplicatedStorage").RemoteEvents.Tools:InvokeServer(unpack(args))
+
+	for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+		v.Handle.Mesh:Destroy()
+		v.Parent = workspace
+	end
+end
